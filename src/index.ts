@@ -70,7 +70,7 @@ app.post("/tick", async (req: Request, res: Response) => {
 
       const data = {
         message: message,
-        username: "Google Business Reviews Monitor",
+        username: "Yelp Reviews Monitor",
         event_name: "Reviews Check",
         status: "success",
       };
