@@ -20,7 +20,8 @@ app.get("/integration.json", (req: Request, res: Response) => {
         app_name: "Yelp Reviews Monitor",
         app_description:
           "This integration will monitor and fetch reviews from Yelp left by the customers every hour.",
-        app_logo: "https://i.imgur.com/lZqvffp.png", // UPDATE THIS AFTER PUSHING
+        app_logo:
+          "https://raw.githubusercontent.com/victoribironke/hng-stage-3-task/refs/heads/master/logo.png", // UPDATE THIS AFTER PUSHING
         app_url: baseUrl,
         background_color: "#fff",
       },
