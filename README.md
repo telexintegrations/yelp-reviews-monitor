@@ -116,7 +116,7 @@ Fetches recent reviews and sends them to the specified return URL.
       {
         "label": "string",
         "type": "string",
-        "required": boolean,
+        "required": "boolean",
         "default": "string"
       }
     ]
