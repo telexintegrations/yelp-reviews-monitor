@@ -32,6 +32,7 @@ const getRecentReviews = async (payload) => {
             text: review.text,
             time: new Date(review.time_created),
         }));
+        console.log({ recentReviews, name: nameResponse.data.name });
         return { recentReviews, name: nameResponse.data.name };
     }
     catch (error) {

@@ -46,6 +46,8 @@ export const getRecentReviews = async (
         time: new Date(review.time_created),
       }));
 
+    console.log({ recentReviews, name: nameResponse.data.name });
+
     return { recentReviews, name: nameResponse.data.name };
   } catch (error) {
     if (axios.isAxiosError(error)) {
