@@ -36,7 +36,7 @@ app.get("/integration.json", (req: Request, res: Response) => {
       settings: [
         { label: "Business ID", type: "text", required: true, default: "" },
         {
-          label: "Interval",
+          label: "interval",
           type: "text",
           required: true,
           default: "0 * * * *",
