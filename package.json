@@ -20,6 +20,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/luxon": "^3.4.2",
     "@types/node": "^22.9.0",
     "pre-commit": "^1.2.2",

@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 
 import { MonitorPayload } from "./types";
 import { getRecentReviews } from "./helpers";
@@ -6,6 +7,7 @@ import axios from "axios";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get("/integration.json", (req: Request, res: Response) => {
   const baseUrl = `${req.protocol}://${req.get("host")}`;
