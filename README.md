@@ -77,13 +77,15 @@ Returns the integration configuration and metadata.
           "app_name": "Yelp Reviews Monitor",
           "app_description": "This integration will monitor and fetch reviews from Yelp left by the customers every hour.",
           "app_logo": "https://raw.githubusercontent.com/victoribironke/hng-stage-3-task/refs/heads/master/logo.png",
-          "app_url": "base_url",
+          "app_url": "http://hng-stage-3-task.vercel.app",
           "background_color": "#fff"
         },
         "is_active": true,
         "integration_type": "interval",
         "key_features": ["Fetches reviews from Yelp hourly."],
-        "category": "Monitoring & Logging",
+        "integration_category": "Monitoring & Logging",
+        "author": "Victor Ibironke",
+        "website": "http://hng-stage-3-task.vercel.app",
         "settings": [
           {
             "label": "Business ID",
@@ -92,12 +94,14 @@ Returns the integration configuration and metadata.
             "default": ""
           },
           {
-            "label": "interval",
+            "label": "Interval",
             "type": "text",
             "required": true,
             "default": "0 * * * *"
           }
-        ]
+        ],
+        "target_url": "http://hng-stage-3-task.vercel.app/tick",
+        "tick_url": "http://hng-stage-3-task.vercel.app/tick"
       }
     }
     ```
