@@ -4,10 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const helpers_1 = require("./helpers");
 const axios_1 = __importDefault(require("axios"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 app.get("/integration.json", (req, res) => {
     const baseUrl = `${req.protocol}://${req.get("host")}`;
     const integrationJson = {
@@ -19,26 +21,26 @@ app.get("/integration.json", (req, res) => {
             descriptions: {
                 app_name: "Yelp Reviews Monitor",
                 app_description: "This integration will monitor and fetch reviews from Yelp left by the customers every hour.",
-                app_logo: "https://i.imgur.com/lZqvffp.png", // UPDATE THIS AFTER PUSHING
+                app_logo: "https://raw.githubusercontent.com/victoribironke/hng-stage-3-task/refs/heads/master/logo.png",
                 app_url: baseUrl,
                 background_color: "#fff",
             },
             is_active: true,
             integration_type: "interval",
             key_features: ["Fetches reviews from Yelp hourly."],
-            category: "Monitoring & Logging",
+            integration_category: "Monitoring & Logging",
             author: "Victor Ibironke",
             website: baseUrl,
             settings: [
                 { label: "Business ID", type: "text", required: true, default: "" },
                 {
-                    label: "interval",
+                    label: "Interval",
                     type: "text",
                     required: true,
                     default: "0 * * * *",
                 },
             ],
-            target_url: "",
+            target_url: `${baseUrl}/tick`,
             tick_url: `${baseUrl}/tick`,
         },
     };
@@ -61,7 +63,7 @@ app.post("/tick", async (req, res) => {
                 formattedReviews.join("\n\n");
             const data = {
                 message: message,
-                username: "Google Business Reviews Monitor",
+                username: "Yelp Reviews Monitor",
                 event_name: "Reviews Check",
                 status: "success",
             };
