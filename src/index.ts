@@ -55,37 +55,37 @@ app.post("/tick", async (req: Request, res: Response) => {
   const payload: MonitorPayload = req.body;
 
   // Using setImmediate for background processing
-  setImmediate(async () => {
-    try {
-      const { recentReviews, name } = await getRecentReviews(payload);
-      const formattedReviews = recentReviews.map((r) => {
-        return `⭐ ${r.author_name} left a ${r.rating} star rating with a review that says: "${r.text}".`;
-      });
-      const prefix = `Your business, ${name}, received ${recentReviews.length} reviews in the last hour.`;
+  // setImmediate(async () => {
+  try {
+    const { recentReviews, name } = await getRecentReviews(payload);
+    const formattedReviews = recentReviews.map((r) => {
+      return `⭐ ${r.author_name} left a ${r.rating} star rating with a review that says: "${r.text}".`;
+    });
+    const prefix = `Your business, ${name}, received ${recentReviews.length} reviews in the last hour.`;
 
-      //  `${review.author_name} (${review.rating}★): ${review.text}`
+    //  `${review.author_name} (${review.rating}★): ${review.text}`
 
-      const message =
-        prefix +
-        (recentReviews.length > 0 ? "\n\n\n" : "") +
-        formattedReviews.join("\n\n");
+    const message =
+      prefix +
+      (recentReviews.length > 0 ? "\n\n\n" : "") +
+      formattedReviews.join("\n\n");
 
-      const data = {
-        message: message,
-        username: "Yelp Reviews Monitor",
-        event_name: "Reviews Check",
-        status: "success",
-      };
+    const data = {
+      message: message,
+      username: "Yelp Reviews Monitor",
+      event_name: "Reviews Check",
+      status: "success",
+    };
 
-      await axios.post(payload.return_url, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    } catch (error) {
-      console.error("Background task error:", error);
-    }
-  });
+    await axios.post(payload.return_url, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+  // });
 
   res.status(202).json({ status: "accepted" });
 });

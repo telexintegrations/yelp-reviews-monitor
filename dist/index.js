@@ -50,33 +50,33 @@ app.get("/integration.json", (req, res) => {
 app.post("/tick", async (req, res) => {
     const payload = req.body;
     // Using setImmediate for background processing
-    setImmediate(async () => {
-        try {
-            const { recentReviews, name } = await (0, helpers_1.getRecentReviews)(payload);
-            const formattedReviews = recentReviews.map((r) => {
-                return `⭐ ${r.author_name} left a ${r.rating} star rating with a review that says: "${r.text}".`;
-            });
-            const prefix = `Your business, ${name}, received ${recentReviews.length} reviews in the last hour.`;
-            //  `${review.author_name} (${review.rating}★): ${review.text}`
-            const message = prefix +
-                (recentReviews.length > 0 ? "\n\n\n" : "") +
-                formattedReviews.join("\n\n");
-            const data = {
-                message: message,
-                username: "Yelp Reviews Monitor",
-                event_name: "Reviews Check",
-                status: "success",
-            };
-            await axios_1.default.post(payload.return_url, data, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-        }
-        catch (error) {
-            console.error("Background task error:", error);
-        }
-    });
+    // setImmediate(async () => {
+    try {
+        const { recentReviews, name } = await (0, helpers_1.getRecentReviews)(payload);
+        const formattedReviews = recentReviews.map((r) => {
+            return `⭐ ${r.author_name} left a ${r.rating} star rating with a review that says: "${r.text}".`;
+        });
+        const prefix = `Your business, ${name}, received ${recentReviews.length} reviews in the last hour.`;
+        //  `${review.author_name} (${review.rating}★): ${review.text}`
+        const message = prefix +
+            (recentReviews.length > 0 ? "\n\n\n" : "") +
+            formattedReviews.join("\n\n");
+        const data = {
+            message: message,
+            username: "Yelp Reviews Monitor",
+            event_name: "Reviews Check",
+            status: "success",
+        };
+        await axios_1.default.post(payload.return_url, data, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
+    catch (error) {
+        console.error("Error:", error);
+    }
+    // });
     res.status(202).json({ status: "accepted" });
 });
 const PORT = process.env.PORT || 3000;
