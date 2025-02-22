@@ -141,7 +141,7 @@ When new reviews are found, they are formatted and sent to the return URL with t
 ```json
 {
   "message": "Your business, [Business Name], received [X] reviews in the last hour.\n\n⭐ [Author] left a [Rating] star rating with a review that says: '[Review Text]'.",
-  "username": "Google Business Reviews Monitor",
+  "username": "Yelp Reviews Monitor",
   "event_name": "Reviews Check",
   "status": "success"
 }
