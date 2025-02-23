@@ -118,10 +118,16 @@ Fetches recent reviews and sends them to the specified return URL.
     "return_url": "string",
     "settings": [
       {
-        "label": "string",
-        "type": "string",
-        "required": "boolean",
-        "default": "string"
+        "label": "Business ID",
+        "type": "text",
+        "required": true,
+        "default": ""
+      },
+      {
+        "label": "interval",
+        "type": "text",
+        "required": true,
+        "default": "0 * * * *"
       }
     ]
   }
